@@ -1,7 +1,9 @@
 const express = require("express");
 const puppeteer = require("puppeteer");
+const cors = require('cors');
 
 const app = express();
+app.use(cors()); // This allows all origins (including localhost) to call your PDF endpoint
 app.use(express.json({ limit: "10mb" }));
 
 app.post("/generate-pdf", async (req, res) => {
