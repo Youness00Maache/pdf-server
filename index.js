@@ -10,7 +10,14 @@ app.post("/generate-pdf", async (req, res) => {
   const { html } = req.body;
 
   const browser = await puppeteer.launch({
-    args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--single-process'
+    ],
+    // If you are using puppeteer-core, you might need to point to the installed chrome
+    // but with 'npx puppeteer browsers install chrome', it should find it automatically.
   });
 
   const page = await browser.newPage();
